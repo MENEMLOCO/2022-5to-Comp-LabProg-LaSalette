@@ -1,5 +1,6 @@
 package calculadora;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
@@ -8,6 +9,7 @@ public class Calculadora {
 
     static Stack<Character> pila = new Stack();
     static LinkedList<Character> lista = new LinkedList();
+    static ArrayList<Character> calcu = new ArrayList();
 
     public static void main(String[] args) {
         System.out.println("escribe una cuenta: ");
@@ -101,10 +103,19 @@ public class Calculadora {
             lista.add (pila.pop());
         }
 
-    
+    tranformar ();
 
+        
 return null;
        
     }
    
+    public static void tranformar (){
+        for (int i=0;i<lista.size();i++){
+            calcu.add(lista.get(i));
+            
+        }
+    }
 }
+
+
