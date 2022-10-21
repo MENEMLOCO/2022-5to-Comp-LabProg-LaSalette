@@ -2,6 +2,7 @@ package calculadora;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -90,7 +91,7 @@ public class Calculadora {
                     }
                     break;
                 case ')':
-                    while (pila.lastElement()!= '('){
+                    while (pila.lastElement() != '(') {
                         lista.add(pila.pop());
                     }
                     pila.pop();
@@ -98,24 +99,65 @@ public class Calculadora {
             }
 
         }
-        
-        while (!pila.isEmpty()){
-            lista.add (pila.pop());
+
+        while (!pila.isEmpty()) {
+            lista.add(pila.pop());
         }
 
-    tranformar ();
+        tranformar();
+        calcular();
+        System.out.println(calcu);
 
-        
-return null;
-       
+        return null;
+
     }
-   
-    public static void tranformar (){
-        for (int i=0;i<lista.size();i++){
+
+    public static void tranformar() {
+        for (int i = 0; i < lista.size(); i++) {
             calcu.add(lista.get(i));
-            
+
         }
     }
+
+    public static void calcular() {
+
+        int i = 0;
+        int c = 0;
+        while (!Objects.equals(calcu.get(i), "+") && !Objects.equals(calcu.get(i), "-") && !Objects.equals(calcu.get(i), "*") && !Objects.equals(calcu.get(i), "/") && i < calcu.size()) {
+            c = i;
+            i++;
+        }
+
+        switch (calcu.get(c)) {
+            case '+':
+                int r = calcu.get(c - 1) + calcu.get(c - 2);
+                calcu.remove(c - 2);
+                calcu.remove(c - 1);
+                calcu.set(c, Character.forDigit(r, 10));
+                break;
+            case '-':
+                r = 0;
+                r = calcu.get(c - 2) - calcu.get(c - 1);
+                calcu.remove(c - 2);
+                calcu.remove(c - 1);
+                calcu.set(c, Character.forDigit(r, 10));
+                break;
+            case '/':
+                r = 0;
+                r = calcu.get(c - 2) / calcu.get(c - 1);
+                calcu.remove(c - 2);
+                calcu.remove(c - 1);
+                calcu.set(c, Character.forDigit(r, 10));
+                break;
+            case '*':
+                r = 0;
+                r = calcu.get(c - 2) * calcu.get(c - 1);
+                calcu.remove(c - 2);
+                calcu.remove(c - 1);
+                calcu.set(c, Character.forDigit(r, 10));
+                break;
+        }
+        calcular();
+    }
+
 }
-
-
