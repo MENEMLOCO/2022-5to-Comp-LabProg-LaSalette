@@ -1,5 +1,6 @@
 package calculadora;
 
+import static calculadora.Calculadora.calcu;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Objects;
@@ -17,9 +18,9 @@ public class Calculadora {
         Scanner sc = new Scanner(System.in);
         char[] separador = sc.nextLine().toCharArray();
         System.out.println(separador);
-
+        System.out.println( "lista" + lista + "pila" + pila);
         LinkedList<Character> cuenta = Reordenar(separador);
-        System.out.println(cuenta + " " + lista + " " + pila);
+        System.out.println("cuenta" + cuenta);
 
     }
 
@@ -106,7 +107,7 @@ public class Calculadora {
 
         tranformar();
         calcular();
-        System.out.println(calcu);
+        System.out.println("despues de calcu"+calcu);
 
         return null;
 
@@ -119,16 +120,15 @@ public class Calculadora {
         }
     }
 
-    public static void calcular() {
+  
+
+public static void calcular() {
 
         int i = 0;
         int c = 0;
-        while (!Objects.equals(calcu.get(i), "+") && !Objects.equals(calcu.get(i), "-") && !Objects.equals(calcu.get(i), "*") && !Objects.equals(calcu.get(i), "/") && i < calcu.size()) {
-            c = i;
-            i++;
-        }
-
-        switch (calcu.get(c)) {
+        
+        for(c=0;c<calcu.size();c++){
+            switch (calcu.get(c)) {
             case '+':
                 int r = calcu.get(c - 1) + calcu.get(c - 2);
                 calcu.remove(c - 2);
@@ -157,7 +157,14 @@ public class Calculadora {
                 calcu.set(c, Character.forDigit(r, 10));
                 break;
         }
-        calcular();
-    }
+        }
+        
+        /*while (!Objects.equals(calcu.get(i), '+') && !Objects.equals(calcu.get(i), '-') && !Objects.equals(calcu.get(i), '*') && !Objects.equals(calcu.get(i), '/') && i < calcu.size()) {
+            c = i;
+            System.out.println(c);
+            i++;
+        }*/
 
+        
+    }
 }
