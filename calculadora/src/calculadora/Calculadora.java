@@ -3,7 +3,6 @@ package calculadora;
 import static calculadora.Calculadora.calcu;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -123,19 +122,22 @@ public class Calculadora {
   
 
 public static void calcular() {
-
+        int r;
         int i = 0;
         int c = 0;
-        
+        System.out.println("calc"+ calcu);
         for(c=0;c<calcu.size();c++){
+            //System.out.println("c "+c);
             switch (calcu.get(c)) {
             case '+':
-                int r = calcu.get(c - 1) + calcu.get(c - 2);
+                System.out.println("mas");
+                r = calcu.get(c - 1) + calcu.get(c - 2);
                 calcu.remove(c - 2);
                 calcu.remove(c - 1);
                 calcu.set(c, Character.forDigit(r, 10));
                 break;
             case '-':
+                System.out.println("menos");
                 r = 0;
                 r = calcu.get(c - 2) - calcu.get(c - 1);
                 calcu.remove(c - 2);
@@ -143,6 +145,7 @@ public static void calcular() {
                 calcu.set(c, Character.forDigit(r, 10));
                 break;
             case '/':
+                System.out.println("division");
                 r = 0;
                 r = calcu.get(c - 2) / calcu.get(c - 1);
                 calcu.remove(c - 2);
@@ -150,8 +153,10 @@ public static void calcular() {
                 calcu.set(c, Character.forDigit(r, 10));
                 break;
             case '*':
+                System.out.println("mult");
                 r = 0;
-                r = calcu.get(c - 2) * calcu.get(c - 1);
+                r = Character.getNumericValue(calcu.get(c-2))*Character.getNumericValue(calcu.get(c-1));
+                System.out.println("r: "+Integer.toString(r).charAt(1));
                 calcu.remove(c - 2);
                 calcu.remove(c - 1);
                 calcu.set(c, Character.forDigit(r, 10));
