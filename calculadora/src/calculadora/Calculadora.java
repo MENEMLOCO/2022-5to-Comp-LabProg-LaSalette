@@ -8,90 +8,90 @@ import java.util.Stack;
 
 public class Calculadora {
 
-    static Stack<Character> pila = new Stack();
-    static LinkedList<Character> lista = new LinkedList();
-    static ArrayList<Character> calcu = new ArrayList();
+    static Stack<String> pila = new Stack();
+    static LinkedList<String> lista = new LinkedList();
+    static ArrayList<String> calcu = new ArrayList();
 
     public static void main(String[] args) {
         System.out.println("escribe una cuenta: ");
         Scanner sc = new Scanner(System.in);
-        char[] separador = sc.nextLine().toCharArray();
+        String separador = sc.nextLine();
         System.out.println(separador);
         System.out.println( "lista" + lista + "pila" + pila);
-        LinkedList<Character> cuenta = Reordenar(separador);
+        LinkedList<String> cuenta = Reordenar(separador);
         System.out.println("cuenta" + cuenta);
 
     }
 
-    public static LinkedList<Character> Reordenar(char[] input) {
+    public static LinkedList<String> Reordenar(String input) {
 
-        for (int i = 0; i < input.length; i++) {
-            switch (input[i]) {
-                case '0':
-                    lista.add(input[i]);
+        for (int i = 0; i < input.length(); i++) {
+            switch (input.substring(i,i+1)) {
+                case "0":
+                    lista.add(input.substring(i,i+1));
                     break;
-                case '1':
-                    lista.add(input[i]);
+                case "1":
+                    lista.add(input.substring(i,i+1));
                     break;
-                case '2':
-                    lista.add(input[i]);
+                case "2":
+                    lista.add(input.substring(i,i+1));
                     break;
-                case '3':
-                    lista.add(input[i]);
+                case "3":
+                    lista.add(input.substring(i,i+1));
                     break;
-                case '4':
-                    lista.add(input[i]);
+                case "4":
+                    lista.add(input.substring(i,i+1));
                     break;
-                case '5':
-                    lista.add(input[i]);
+                case "5":
+                    lista.add(input.substring(i,i+1));
                     break;
-                case '6':
-                    lista.add(input[i]);
+                case "6":
+                    lista.add(input.substring(i,i+1));
                     break;
-                case '7':
-                    lista.add(input[i]);
+                case "7":
+                    lista.add(input.substring(i,i+1));
                     break;
-                case '8':
-                    lista.add(input[i]);
+                case "8":
+                    lista.add(input.substring(i,i+1));
                     break;
-                case '9':
-                    lista.add(input[i]);
+                case "9":
+                    lista.add(input.substring(i,i+1));
                     break;
-                case '(':
-                    pila.push(input[i]);
+                case "(":
+                    pila.push(input.substring(i,i+1));
                     break;
-                case '*':
-                    pila.push(input[i]);
+                case "*":
+                    pila.push(input.substring(i,i+1));
                     break;
-                case '/':
-                    pila.push(input[i]);
+                case "/":
+                    pila.push(input.substring(i,i+1));
                     break;
-                case '+':
+                case "+":
                     if (!pila.isEmpty()) {
-                        if (pila.lastElement() == '*' || pila.lastElement() == '/') {
+                        if (pila.lastElement() == "*" || pila.lastElement() == "/") {
                             lista.add(pila.pop());
-                            pila.push(input[i]);
+                            pila.push(input.substring(i,i+1));
                         } else {
-                            pila.push(input[i]);
+                            pila.push(input.substring(i,i+1));
                         }
                     } else {
-                        pila.push(input[i]);
+                        pila.push(input.substring(i,i+1));
                     }
                     break;
-                case '-':
+                case "-":
                     if (!pila.isEmpty()) {
-                        if (pila.lastElement() == '*' || pila.lastElement() == '/') {
+                        if (pila.lastElement() == "*" || pila.lastElement() == "/"){
                             lista.add(pila.pop());
-                            pila.push(input[i]);
+                            pila.push(input.substring(i,i+1));
                         } else {
-                            pila.push(input[i]);
+                            pila.push(input.substring(i,i+1));
                         }
                     } else {
-                        pila.push(input[i]);
+                        pila.push(input.substring(i,i+1));
                     }
                     break;
-                case ')':
-                    while (pila.lastElement() != '(') {
+                case ")":
+                    while (pila.lastElement() != "(") {
                         lista.add(pila.pop());
                     }
                     pila.pop();
@@ -129,37 +129,36 @@ public static void calcular() {
         for(c=0;c<calcu.size();c++){
             //System.out.println("c "+c);
             switch (calcu.get(c)) {
-            case '+':
-                System.out.println("mas");
-                r = calcu.get(c - 1) + calcu.get(c - 2);
+            case "+":
+                r =  Integer.valueOf(calcu.get(c-2)) + Integer.valueOf(calcu.get(c-1));
                 calcu.remove(c - 2);
                 calcu.remove(c - 1);
-                calcu.set(c, Character.forDigit(r, 10));
+                calcu.set(c, String.valueOf(r));
                 break;
-            case '-':
+            case "-":
                 System.out.println("menos");
                 r = 0;
-                r = calcu.get(c - 2) - calcu.get(c - 1);
+                r =  Integer.valueOf(calcu.get(c-2)) - Integer.valueOf(calcu.get(c-1));
                 calcu.remove(c - 2);
                 calcu.remove(c - 1);
-                calcu.set(c, Character.forDigit(r, 10));
+                calcu.set(c, String.valueOf(r));
                 break;
-            case '/':
+            case "/":
                 System.out.println("division");
                 r = 0;
-                r = calcu.get(c - 2) / calcu.get(c - 1);
+                r = Integer.valueOf(calcu.get(c-2)) / Integer.valueOf(calcu.get(c-1));
                 calcu.remove(c - 2);
                 calcu.remove(c - 1);
-                calcu.set(c, Character.forDigit(r, 10));
+                calcu.set(c, String.valueOf(r));
                 break;
-            case '*':
+            case "*":
                 System.out.println("mult");
                 r = 0;
-                r = Character.getNumericValue(calcu.get(c-2))*Character.getNumericValue(calcu.get(c-1));
+                r = Integer.valueOf(calcu.get(c-2)) * Integer.valueOf(calcu.get(c-1));
                 System.out.println("r: "+Integer.toString(r).charAt(1));
                 calcu.remove(c - 2);
                 calcu.remove(c - 1);
-                calcu.set(c, Character.forDigit(r, 10));
+                calcu.set(c, String.valueOf(r));
                 break;
         }
         }
