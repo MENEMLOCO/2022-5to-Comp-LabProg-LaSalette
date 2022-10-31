@@ -11,21 +11,23 @@ public class Calculadora {
     static Stack<String> pila = new Stack();
     static LinkedList<String> lista = new LinkedList();
     static ArrayList<String> calcu = new ArrayList();
-
+    static String separador;
+    static LinkedList<String> cuenta = new LinkedList ();
+    
     public static void main(String[] args) {
-        System.out.println("escribe una cuenta: ");
-        Scanner sc = new Scanner(System.in);
-        String separador = sc.nextLine();
-        System.out.println(separador);
-        System.out.println( "lista" + lista + "pila" + pila);
-        LinkedList<String> cuenta = Reordenar(separador);
-        System.out.println("cuenta" + cuenta);
+        //System.out.println("escribe una cuenta: ");
+        //Scanner sc = new Scanner(System.in);
+        //String separador = sc.nextLine();
+        //LinkedList<String> cuenta = Reordenar(separador);
+        //System.out.println("cuenta" + cuenta);
 
     }
 
     public static LinkedList<String> Reordenar(String input) {
 
         for (int i = 0; i < input.length(); i++) {
+            System.out.println("lista"+ lista);
+            System.out.println("pila"+ pila);
             switch (input.substring(i,i+1)) {
                 case "0":
                     lista.add(input.substring(i,i+1));
@@ -68,11 +70,13 @@ public class Calculadora {
                     break;
                 case "+":
                     if (!pila.isEmpty()) {
-                        if (pila.lastElement() == "*" || pila.lastElement() == "/") {
+                        if (pila.lastElement().equalsIgnoreCase("*") || pila.lastElement().equalsIgnoreCase("/")){
+                            System.out.println("entre por aca");
                             lista.add(pila.pop());
                             pila.push(input.substring(i,i+1));
                         } else {
                             pila.push(input.substring(i,i+1));
+                             System.out.println("entre mal");
                         }
                     } else {
                         pila.push(input.substring(i,i+1));
@@ -80,7 +84,7 @@ public class Calculadora {
                     break;
                 case "-":
                     if (!pila.isEmpty()) {
-                        if (pila.lastElement() == "*" || pila.lastElement() == "/"){
+                        if (pila.lastElement().equalsIgnoreCase("*") || pila.lastElement().equalsIgnoreCase("/")){
                             lista.add(pila.pop());
                             pila.push(input.substring(i,i+1));
                         } else {
@@ -105,7 +109,9 @@ public class Calculadora {
         }
 
         tranformar();
+        while(calcu.size()>1){
         calcular();
+        }
         System.out.println("despues de calcu"+calcu);
 
         return null;
@@ -125,40 +131,40 @@ public static void calcular() {
         int r;
         int i = 0;
         int c = 0;
-        System.out.println("calc"+ calcu);
+        //System.out.println("calc"+ calcu);
         for(c=0;c<calcu.size();c++){
-            //System.out.println("c "+c);
             switch (calcu.get(c)) {
             case "+":
+                r=0;
                 r =  Integer.valueOf(calcu.get(c-2)) + Integer.valueOf(calcu.get(c-1));
-                calcu.remove(c - 2);
+                calcu.remove(c);
                 calcu.remove(c - 1);
-                calcu.set(c, String.valueOf(r));
+                calcu.set(c-2, String.valueOf(r));
                 break;
             case "-":
-                System.out.println("menos");
+                //System.out.println("menos");
                 r = 0;
                 r =  Integer.valueOf(calcu.get(c-2)) - Integer.valueOf(calcu.get(c-1));
-                calcu.remove(c - 2);
+                calcu.remove(c);
                 calcu.remove(c - 1);
-                calcu.set(c, String.valueOf(r));
+                calcu.set(c-2, String.valueOf(r));
                 break;
             case "/":
-                System.out.println("division");
+                //System.out.println("division");
                 r = 0;
                 r = Integer.valueOf(calcu.get(c-2)) / Integer.valueOf(calcu.get(c-1));
-                calcu.remove(c - 2);
+                calcu.remove(c);
                 calcu.remove(c - 1);
-                calcu.set(c, String.valueOf(r));
+                calcu.set(c-2, String.valueOf(r));
                 break;
             case "*":
-                System.out.println("mult");
+                //System.out.println("mult");
                 r = 0;
                 r = Integer.valueOf(calcu.get(c-2)) * Integer.valueOf(calcu.get(c-1));
-                System.out.println("r: "+Integer.toString(r).charAt(1));
-                calcu.remove(c - 2);
+                System.out.println("r: "+Integer.toString(r));
+                calcu.remove(c);
                 calcu.remove(c - 1);
-                calcu.set(c, String.valueOf(r));
+                calcu.set(c-2 , String.valueOf(r));
                 break;
         }
         }
