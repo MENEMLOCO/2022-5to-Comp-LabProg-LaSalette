@@ -1,6 +1,7 @@
 package calculadora;
 
 import static calculadora.Calculadora.Reordenar;
+import static calculadora.Calculadora.calcu;
 import static calculadora.Calculadora.separador;
 import java.util.LinkedList;
 
@@ -297,8 +298,11 @@ public class calc extends javax.swing.JFrame {
     private void iguMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iguMouseClicked
        Calculadora.separador =pantalla.getText();
        Calculadora.cuenta = Reordenar(separador);
+       pantalla.setText(String.valueOf(calcu.get(0)));
     }//GEN-LAST:event_iguMouseClicked
 
+   
+    
     /**
      * @param args the command line arguments
      */

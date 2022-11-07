@@ -14,20 +14,13 @@ public class Calculadora {
     static String separador;
     static LinkedList<String> cuenta = new LinkedList ();
     
-    public static void main(String[] args) {
-        //System.out.println("escribe una cuenta: ");
-        //Scanner sc = new Scanner(System.in);
-        //String separador = sc.nextLine();
-        //LinkedList<String> cuenta = Reordenar(separador);
-        //System.out.println("cuenta" + cuenta);
-
-    }
+   
 
     public static LinkedList<String> Reordenar(String input) {
 
         for (int i = 0; i < input.length(); i++) {
-            System.out.println("lista"+ lista);
-            System.out.println("pila"+ pila);
+            //System.out.println("lista"+ lista);
+            //System.out.println("pila"+ pila);
             switch (input.substring(i,i+1)) {
                 case "0":
                     lista.add(input.substring(i,i+1));
@@ -71,7 +64,7 @@ public class Calculadora {
                 case "+":
                     if (!pila.isEmpty()) {
                         if (pila.lastElement().equalsIgnoreCase("*") || pila.lastElement().equalsIgnoreCase("/")){
-                            System.out.println("entre por aca");
+                            //System.out.println("entre por aca");
                             lista.add(pila.pop());
                             pila.push(input.substring(i,i+1));
                         } else {
@@ -112,7 +105,8 @@ public class Calculadora {
         while(calcu.size()>1){
         calcular();
         }
-        System.out.println("despues de calcu"+calcu);
+        
+        //System.out.println("despues de calcu"+calcu);
 
         return null;
 
@@ -161,7 +155,7 @@ public static void calcular() {
                 //System.out.println("mult");
                 r = 0;
                 r = Integer.valueOf(calcu.get(c-2)) * Integer.valueOf(calcu.get(c-1));
-                System.out.println("r: "+Integer.toString(r));
+                //System.out.println("r: "+Integer.toString(r));
                 calcu.remove(c);
                 calcu.remove(c - 1);
                 calcu.set(c-2 , String.valueOf(r));
