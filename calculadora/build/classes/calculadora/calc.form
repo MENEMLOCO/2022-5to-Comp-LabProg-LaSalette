@@ -52,11 +52,6 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="cero" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="igu" max="32767" attributes="0"/>
-                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="cuatro" min="-2" pref="40" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -65,11 +60,23 @@
                                       <Component id="seis" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="siete" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="ocho" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="cero" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="igu" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="siete" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="ocho" min="-2" pref="40" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="nueve" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="nueve" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="ce" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -130,6 +137,7 @@
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="igu" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="mas" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="ce" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -265,6 +273,14 @@
           <Connection code="&quot;&quot;" type="code"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="ce">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="C"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ceMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
